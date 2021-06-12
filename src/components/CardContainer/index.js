@@ -13,12 +13,11 @@ const CardContainer = ({coins, searchQuery, symbol}) => {
     }, [coins, searchQuery]);
     return (
         <Container>
-            {coins.length &&
+            {coins &&
                 filtered.map((coin) => (
                     <Card key={coin.id} symbol={symbol} coin={coin} />
                 ))}
         </Container>
     );
 };
-// coins.map((coin) => <Card key={coin.id} coin={coin} />)
 export default CardContainer;
