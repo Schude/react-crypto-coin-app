@@ -1,37 +1,24 @@
-import React, {useRef, useEffect} from 'react';
+import React, {useRef} from 'react';
 import {CloseButton, DetailContainer} from './styles';
-import {SectionItem, Title, Section} from '../Card/styles';
-import Chart from './Chart';
+import {SectionItem, Title, Section} from '../SharedStyles';
+import {Colored, fixNumber, useOutsideClick} from '../../utils';
 import Content from '../Card/Content';
-import Colored from '../../utils/Colored';
-import fixNumber from '../../utils/FixNumber';
-const Detail = ({coin, toggleOpen}) => {
+import ChartContainer from './ChartContainer';
+const Detail = ({coin, toggleOpen, symbol}) => {
     const detail = useRef();
-    useEffect(() => {
-        const detailCurrent = detail.current;
-        document.addEventListener('mousedown', ({target}) => {
-            if (detailCurrent && !detailCurrent.contains(target)) {
-                toggleOpen(false);
-            }
-        });
-        return () => {
-            document.removeEventListener('mousedown', ({target}) => {
-                if (detailCurrent && !detailCurrent.contains(target)) {
-                    toggleOpen(false);
-                }
-            });
-        };
-    }, [detail, toggleOpen]);
+    useOutsideClick(detail, toggleOpen);
 
     return (
         <DetailContainer ref={detail}>
             <Section>
-                <Title justify="flex-start">
+                <Title w="50%">
                     <img src={coin.image} alt={coin.name} width="32px" />
 
                     <Content text={coin.name} />
                     <Content text={`(${coin.symbol.toUpperCase()})`} />
-                    <Content text={`${fixNumber(coin.current_price)}$`} />
+                    <Content
+                        text={`${fixNumber(coin.current_price)}${symbol}`}
+                    />
                     <Content
                         clr={Colored(coin.price_change_percentage_24h)}
                         text={`${fixNumber(coin.price_change_percentage_24h)}%`}
@@ -45,13 +32,15 @@ const Detail = ({coin, toggleOpen}) => {
                 </SectionItem>
                 <SectionItem>
                     <Content text="Market Cap" />
-                    <Content text={`${fixNumber(coin.market_cap)}$`} />
+                    <Content text={`${fixNumber(coin.market_cap)}${symbol}`} />
                 </SectionItem>
                 <SectionItem>
                     <Content text="Market Cap Change(24h)" />
                     <Content
                         clr={Colored(coin.market_cap_change_24h)}
-                        text={`${fixNumber(coin.market_cap_change_24h)}$`}
+                        text={`${fixNumber(
+                            coin.market_cap_change_24h
+                        )}${symbol}`}
                     />{' '}
                 </SectionItem>
                 <SectionItem>
@@ -120,10 +109,7 @@ const Detail = ({coin, toggleOpen}) => {
                     />{' '}
                 </SectionItem>
             </Section>
-            <Section>
-                <Chart name= {coin.id} />
-            </Section>
-
+            <ChartContainer name={coin.id} />
             <CloseButton onClick={() => toggleOpen(false)} />
         </DetailContainer>
     );

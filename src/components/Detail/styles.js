@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export const DetailContainer = styled.div`
     position: fixed;
-    background: #fff;
+    background-color: #efefef;
     width: 70%;
-    height: 680px;
+    height: auto;
     top: 50%;
-    margin-top: -340px;
+    margin-top: -400px;
     left: 50%;
     margin-left: calc(35% - 70%);
-    padding: 10px;
+    padding: 15px;
 `;
 
 export const CloseButton = styled.button`
@@ -37,10 +37,15 @@ export const Section = styled.div`
     font-size: 0.9rem;
     padding: 6px 0;
 `;
-
+export const ChartWrapper = styled.div`
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 export const Spinner = styled.div`
     pointer-events: none;
-    align-self:center;
+    align-self: center;
     width: 2.5em;
     height: 2.5em;
     border: 0.4em solid transparent;
@@ -54,4 +59,9 @@ export const Spinner = styled.div`
             transform: rotate(360deg);
         }
     }
+`;
+export const ButtonDiv = styled.div`
+    display: flex;
+    margin-top: 20px;
+    justify-content: flex-end;
 `;
