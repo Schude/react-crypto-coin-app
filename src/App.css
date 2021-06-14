@@ -1,9 +1,16 @@
-.App {
-    min-height: 100vh;
-    text-align: center;
+body{
     background-color: #1c1e33;
+    min-height: 100vh;
+}
+
+.App {
+    /* min-height: 100vh; */
+    text-align: center;
+    /* background-color: #1c1e33; */
     font-family: 'Gotham', Arial, Helvetica, sans-serif;
     font-size: 2.5rem;
+    width: 80%;
+    margin:0 auto;
     box-sizing: border-box;
     display:flex;
     flex-flow: column;

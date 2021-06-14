@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
     background: #fff;
-    width: 400px;
+    min-width: 300px;
     display: flex;
     flex-flow: column;
     align-items: center;
